@@ -1,6 +1,6 @@
 # MUI DateRange Picker
 
-A React date range picker implementation using @mui (v6).
+A React date range picker implementation using @mui (v7).
 
 <a href='https://www.npmjs.com/package/date-range-picker-mui'>
     <img src='https://img.shields.io/npm/v/date-range-picker-mui.svg' alt='Latest npm version'>
