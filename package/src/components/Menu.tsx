@@ -11,6 +11,7 @@ import {Locale} from "date-fns/locale";
 
 interface MenuProps {
   dateRange: DateRange;
+  showRangeDatesOnTop?: boolean;
   ranges: DefinedRange[];
   minDate: Date;
   maxDate: Date;
@@ -38,6 +39,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
   const {
     ranges,
     dateRange,
+    showRangeDatesOnTop = false,
     minDate,
     maxDate,
     firstMonth,
@@ -67,22 +69,24 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
         </Grid>
         <Divider orientation="vertical" flexItem/>
         <Grid>
-          <Grid container sx={{padding: '20px 70px'}} alignItems="center">
-            <Grid sx={{flex: 1, textAlign: 'center'}}>
-              <Typography variant="subtitle1">
-                {startDate ? format(startDate, 'dd MMMM yyyy', {locale}) : 'Start Date'}
-              </Typography>
+          {showRangeDatesOnTop && <>
+            <Grid container sx={{padding: '20px 70px'}} alignItems="center">
+              <Grid sx={{flex: 1, textAlign: 'center'}}>
+                <Typography variant="subtitle1">
+                  {startDate ? format(startDate, 'dd MMMM yyyy', {locale}) : 'Start Date'}
+                </Typography>
+              </Grid>
+              <Grid sx={{flex: 1, textAlign: 'center'}}>
+                <ArrowRightAltIcon color="action"/>
+              </Grid>
+              <Grid sx={{flex: 1, textAlign: 'center'}}>
+                <Typography variant="subtitle1">
+                  {endDate ? format(endDate, 'dd MMMM yyyy', {locale}) : 'End Date'}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid sx={{flex: 1, textAlign: 'center'}}>
-              <ArrowRightAltIcon color="action"/>
-            </Grid>
-            <Grid sx={{flex: 1, textAlign: 'center'}}>
-              <Typography variant="subtitle1">
-                {endDate ? format(endDate, 'dd MMMM yyyy', {locale}) : 'End Date'}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Divider/>
+            <Divider/>
+          </>}
           <Grid container direction="row" justifyContent="center" wrap="nowrap">
             <Month
               {...commonProps}
